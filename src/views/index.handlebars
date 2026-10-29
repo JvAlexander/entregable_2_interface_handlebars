@@ -1,0 +1,101 @@
+
+<main class="container">
+
+    <header class="top">
+        <div class="brand">
+            <span class="brand-icon">M</span>
+            <span>MENSAJES</span>
+        </div>
+        <span class="status">
+            <span class="status-dot"></span>
+            ESPACIO DE PUBLICACION
+        </span>
+    </header>
+
+    <section class="advertisement">
+        <span class="ad-label">ESPACIO DESTACADO</span>
+        <h1>PUBLICIDAD</h1>
+        <p>Tu espacio para destacar lo que importa.</p>
+    </section>
+
+    <section class="composer">
+        <div class="user-info">
+            <div class="avatar">{{username}}</div>
+
+            <div class="user-text">
+                <span class="muted">PUBLICANDO COMO</span>
+                <h2>USERNAME: {{username}}</h2>
+            </div>
+        </div>
+
+        <form action="/messages" method="POST" class="message-form">
+            <label for="message">MENSAJE:</label>
+
+            <input
+                type="text"
+                id="message"
+                name="message"
+                placeholder="Ingrese el mensaje..."
+                maxlength="300"
+                required
+                autocomplete="off"
+            >
+
+            <button type="submit">
+                ENVIAR
+                <span class="send-icon">➤</span>
+            </button>
+        </form>
+
+        <p class="hint">Comparte una idea o deja un mensaje.</p>
+    </section>
+
+    <section class="feed">
+        <div class="feed-heading">
+            <div>
+                <span class="section-label">COMUNIDAD</span>
+                <h2>Panel de mensajes</h2>
+            </div>
+
+            <span class="counter">{{total}} mensajes</span>
+        </div>
+
+        <div class="message-list">
+            {{#if messages.length}}
+
+                {{#each messages}}
+                    <article class="message-card">
+                        <div class="message-avatar">M</div>
+
+                        <div class="message-content">
+                            <div class="message-header">
+                                <strong>{{this.username}}</strong>
+                                <span>{{this.date}}</span>
+                            </div>
+
+                            <p>{{this.message}}</p>
+                        </div>
+                    </article>
+                {{/each}}
+
+            {{else}}
+
+                <div class="empty-state">
+                    <div class="empty-icon">✦</div>
+                    <h3>Tu espacio está listo</h3>
+                    <p>
+                        Todavía no hay mensajes publicados.
+                        Escribe el primero usando el formulario de arriba.
+                    </p>
+                </div>
+
+            {{/if}}
+        </div>
+    </section>
+
+    <footer>
+        <span>MENSAJES</span>
+        <p>Un espacio para compartir ideas.</p>
+    </footer>
+
+</main>
